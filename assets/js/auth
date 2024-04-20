@@ -1,0 +1,16 @@
+// Simulate user authentication status (this would come from the server in a real app)
+const isLoggedIn = false; // Set to true for logged-in users
+
+// Function to update page content based on login status
+function updateContentVisibility() {
+    if (isLoggedIn) {
+        document.getElementById("profile-content").style.display = "block"; // Show profile content
+        document.getElementById("login-prompt").style.display = "none"; // Hide login prompt
+    } else {
+        document.getElementById("profile-content").style.display = "none"; // Hide profile content
+        document.getElementById("login-prompt").style.display = "block"; // Show login prompt
+    }
+}
+
+// Call the function on page load to set the initial state
+document.addEventListener("DOMContentLoaded", updateContentVisibility);
