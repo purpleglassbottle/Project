@@ -1,0 +1,16 @@
+1. HTML Design for Main Content
+2. Create Session Pages and Improve More Features
+3. Improve Musicians Pages
+4. Improve Login Pages 
+5. Improve javasript for the rubrics
+a) Your code needs to demonstrate
+at least three different events (15 pts)
+at least five elements with which user interaction will trigger some event handler (25 pts)
+b) Your code needs to demonstrate
+at least three ways of selecting elements, each way should be suitable to the task (15 pts)
+at least least one selection should return a collection of HTML elements and apply some customized operations on each element (for example, a list of different todo items, and apply different styles based on if the todo item is overdue or not.) (5 pts)
+c) Your code needs to demonstrate
+at least five complete user interactions facilitated by JS (see explanations above) (25 pts)
+understanding of scope (for example, appropriate use of function scope and global scopes for variables, functions, etc.) (5 pts)
+d) Dynamic content rendering on the web page from external data, with consistent tags, styles, and behaviors. (similar to the survey rendering process in Lab 9!)
+For example, if you have a shopping list, existing items should be rendered from an external data file, and each item should have functioning buttons allowing users to edit or remove it.
