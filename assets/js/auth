@@ -1,16 +1,35 @@
-// Simulate user authentication status (this would come from the server in a real app)
-const isLoggedIn = false; // Set to true for logged-in users
+// Variable to simulate login status
+let isLoggedIn = false;
 
-// Function to update page content based on login status
-function updateContentVisibility() {
+// Function to handle login
+function handleLogin() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    // Simulate successful login
+    if (username && password) {
+        isLoggedIn = true;
+        redirectToProfileDetails(); // Redirect if login is successful
+        return false; // Prevent default form submission
+    }
+
+    alert("Invalid login. Please try again.");
+    return false;
+}
+
+// Function to check login status
+function checkLoginStatus() {
     if (isLoggedIn) {
-        document.getElementById("profile-content").style.display = "block"; // Show profile content
-        document.getElementById("login-prompt").style.display = "none"; // Hide login prompt
+        document.getElementById('login-form').style.display = 'none';
+        document.getElementById('profile-details').style.display = 'block';
+        setTimeout(redirectToProfileDetails, 2000); // Redirect after 2 seconds
     } else {
-        document.getElementById("profile-content").style.display = "none"; // Hide profile content
-        document.getElementById("login-prompt").style.display = "block"; // Show login prompt
+        document.getElementById('login-form').style.display = 'block';
+        document.getElementById('profile-details').style.display = 'none';
     }
 }
 
-// Call the function on page load to set the initial state
-document.addEventListener("DOMContentLoaded", updateContentVisibility);
+// Redirect to profile details
+function redirectToProfileDetails() {
+    window.location.href = 'profile-details.html';
+}
