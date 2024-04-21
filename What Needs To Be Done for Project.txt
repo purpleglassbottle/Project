@@ -1,3 +1,4 @@
+** EDIT THE LOGO FOR THE HOME PAGE! (TYPO) **
 1. HTML Design for Main Content
 2. Create Session Pages and Improve More Features
 3. Improve Musicians Pages
