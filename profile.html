@@ -11,12 +11,12 @@
     <div class="container mt-5">
         <h1 class="text-center">Profile</h1>
 
-        <!-- Login Form -->
-        <div id="login-form" style="display: none;">
+        <!-- Login Form (should be visible if not logged in) -->
+        <div id="login-form" style="display: block;"> <!-- Default display is block -->
             <form onsubmit="return handleLogin();"> <!-- Use function from the external JS -->
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
+                    <input type="text" class="form-control" id="username" required>
                 </div>
                 <div class="mb-3">
                     <label for="password" class="form-label">Password</label>
@@ -28,9 +28,15 @@
             </form>
         </div>
 
-        <!-- If logged in, show redirect message -->
-        <div id="profile-details" style="display: none;">
-            <p class="text-center">You are already logged in. Redirecting to your profile...</p>
+        <!-- Profile Details (should be hidden if not logged in) -->
+        <div id="profile-details" style="display: none;"> <!-- Default display is none -->
+            <div class="text-center">
+                <img src="#" alt="Profile Picture" id="profile-picture" class="rounded-circle" style="width: 100px;">
+                <h2 id="profile-name">Name</h2>
+                <p>Genres: <span id="profile-genres"></span></p>
+                <p>Musicians Interested: <span id="profile-musicians"></span></p>
+                <button class="btn btn-success" onclick="editProfile()">Edit Profile</button>
+            </div>
         </div>
     </div>
 
