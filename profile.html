@@ -11,8 +11,8 @@
     <div class="container mt-5">
         <h1 class="text-center">Profile</h1>
 
-        <!-- Login Form -->
-        <div id="login-form" style="display: none;">
+        <!-- Login Form (should be visible if not logged in) -->
+        <div id="login-form" style="display: block;"> <!-- Default display is block -->
             <form onsubmit="return handleLogin();"> <!-- Use function from the external JS -->
                 <div class="mb-3">
                     <label for="username" class="form-label">Username</label>
@@ -28,33 +28,14 @@
             </form>
         </div>
 
-        <!-- Profile Details -->
-        <div id="profile-details" style="display: none;">
+        <!-- Profile Details (should be hidden if not logged in) -->
+        <div id="profile-details" style="display: none;"> <!-- Default display is none -->
             <div class="text-center">
                 <img src="#" alt="Profile Picture" id="profile-picture" class="rounded-circle" style="width: 100px;">
                 <h2 id="profile-name">Name</h2>
                 <p>Genres: <span id="profile-genres"></span></p>
                 <p>Musicians Interested: <span id="profile-musicians"></span></p>
                 <button class="btn btn-success" onclick="editProfile()">Edit Profile</button>
-            </div>
-            <div id="profile-edit" style="display: none;">
-                <form onsubmit="return saveProfile();">
-                    <div class="mb-3">
-                        <label for="edit-name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="edit-name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-genres" class="form-label">Genres</label>
-                        <input type="text" class="form-control" id="edit-genres" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="edit-musicians" class="form-label">Musicians Interested</label>
-                        <input type="text" class="form-control" id="edit-musicians" required>
-                    </div>
-                    <div class="text-center">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                    </div>
-                </form>
             </div>
         </div>
     </div>
