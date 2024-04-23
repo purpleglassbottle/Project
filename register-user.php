@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 // Establish database connection
 $conn = new mysqli("localhost", "username", "password", "database");
 
@@ -23,4 +23,4 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-?>
+?> -->
