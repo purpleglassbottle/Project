@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const { requireAuth } = require('../middleware/auth'); // Import the authentication middleware
 
-// Apply authentication middleware to all routes in this file
-const authMiddleware = require('../middleware/auth');
-
-// Route to serve session page
-router.get('/session', authMiddleware.requireAuth, (req, res) => {
-  res.sendFile(__dirname + '/../public/session.html'); // Serve session page
+// Example of applying the middleware to protect the session page
+router.get('/session', requireAuth, (req, res) => {
+  res.sendFile(__dirname + '/../public/session.html'); // Serve the protected session page
 });
 
-// Route to serve musicians page
-router.get('/musicians', authMiddleware.requireAuth, (req, res) => {
-  res.sendFile(__dirname + '/../public/musicians.html'); // Serve musicians page
+// Protecting the musicians page with the authentication middleware
+router.get('/musicians', requireAuth, (req, res) => {
+  res.sendFile(__dirname + '/../public/musicians.html');
 });
 
-module.exports = router;
+module.exports = router; // Export the router with protected routes
