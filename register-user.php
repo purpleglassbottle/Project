@@ -1,6 +1,8 @@
 <?php
+// register-user.php
+
 // Establish database connection
-$conn = new mysqli("localhost", "username", "password", "database");
+$conn = new mysqli("localhost", "username", "password", "database"); // Adjust database details accordingly
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -23,4 +25,4 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $conn->close();
-?> 
+?>
