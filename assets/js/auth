@@ -1,68 +1,55 @@
-function isUserLoggedIn() {
-    // Check login status (example with local storage)
-    return localStorage.getItem('userLoggedIn') === 'true';
+const express = require('express');
+const session = require('express-session');
+const bodyParser = require('body-parser');
+
+const app = express();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Initialize session management
+app.use(session({
+  secret: 'your_secret_key', // replace with a strong secret key
+  resave: false,
+  saveUninitialized: false,
+}));
+
+// Example user database (usually in a real database)
+const users = [
+  { username: 'user1', password: 'password1' },
+  { username: 'user2', password: 'password2' },
+];
+
+// Login endpoint
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  const user = users.find(u => u.username === username && u.password === password);
+  if (user) {
+    req.session.user = user;
+    res.redirect('/create-session'); // Redirect to the intended page
+  } else {
+    res.status(401).send('Invalid credentials');
+  }
+});
+
+// Middleware to check authentication
+function requireAuth(req, res, next) {
+  if (req.session.user) {
+    next(); // User is logged in, proceed to the requested page
+  } else {
+    res.redirect('/login'); // Redirect to login if not authenticated
+  }
 }
 
-function handleLogin() {
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
+// Route for creating a session, requiring authentication
+app.get('/create-session', requireAuth, (req, res) => {
+  res.sendFile(__dirname + '/create-session.html'); // Serve the create-session page
+});
 
-    // Simulate login validation logic (adjust as needed)
-    if (username === 'admin' && password === 'password') {
-        localStorage.setItem('userLoggedIn', 'true');
-        loadProfileDetails(); // Load profile details after successful login
-    } else {
-        alert("Invalid login credentials.");
-    }
+// Route for login page
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/login.html'); // Serve the login page
+});
 
-    return false; // Prevent default form submission
-}
-
-function checkLoginStatus() {
-    if (isUserLoggedIn()) {
-        document.getElementById('login-form').style.display = 'none';
-        document.getElementById('profile-details').style.display = 'block';
-        loadProfileDetails();
-    } else {
-        document.getElementById('login-form').style.display = 'block';
-        document.getElementById('profile-details').style.display = 'none';
-    }
-}
-
-function loadProfileDetails() {
-    // Fetch profile information from some source (example data)
-    const profile = {
-        picture: 'path/to/profile_picture.jpg',
-        name: 'John Doe',
-        genres: 'Jazz, Blues, Rock',
-        musicians: 'John Coltrane, B.B. King, Jimi Hendrix',
-    };
-
-    document.getElementById('profile-picture').src = profile.picture;
-    document.getElementById('profile-name').innerText = profile.name;
-    document.getElementById('profile-genres').innerText = profile.genres;
-    document.getElementById('profile-musicians').innerText = profile.musicians;
-}
-
-function saveProfile() {
-    const newName = document.getElementById('edit-name').value;
-    const newGenres = document.getElementById('edit-genres').value;
-    const newMusicians = document.getElementById('edit-musicians').value;
-
-    // Save profile information logic (this is just a basic example)
-    const updatedProfile = {
-        name: newName,
-        genres: newGenres,
-        musicians: newMusicians,
-    };
-
-    // Update display and hide the edit form
-    document.getElementById('profile-edit').style.display = 'none';
-    loadProfileDetails();
-
-    return false; // Prevent default form submission
-}
-
-function editProfile() {
-    document.getElementById('profile-edit').style.display = 'block';
-}
+app.listen(3000, () => {
+  console.log('Server is running on http://localhost:3000');
+});
