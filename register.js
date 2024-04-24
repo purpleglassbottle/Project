@@ -37,8 +37,8 @@ document.getElementById('register-form').addEventListener('submit', async functi
 
         if (response.ok) {
             // Registration was successful
-            alert('Registration successful!');
-            // Redirect or do other things based on success
+            // Redirect to the registration completion page
+            window.location.href = 'finalize-registration.html';
         } else {
             // Handle server-side errors
             errorDiv.innerText = result.error || 'Registration failed';
