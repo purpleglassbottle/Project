@@ -1,40 +1,50 @@
-document.getElementById('register-form').addEventListener('submit', async function (e) {
-    e.preventDefault(); // Prevent default form submission
+document.getElementById("register-form").addEventListener("submit", async function (e) {
+    e.preventDefault(); // Prevent the default form submission
 
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    const email = document.getElementById('email').value;
+    // Gather form data
+    const username = document.getElementById("username").value;
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    const passwordConfirm = document.getElementById("password-confirm").value;
 
-    const data = {
+    // Validate passwords match
+    if (password !== passwordConfirm) {
+        const errorDiv = document.getElementById("form-error");
+        errorDiv.innerText = "Passwords do not match.";
+        errorDiv.style.display = "block";
+        return;
+    }
+
+    // Data to be sent to the backend
+    const formData = {
         username: username,
-        password: password,
-        email: email
+        email: email,
+        password: password
     };
 
-    // Error message element
-    const errorDiv = document.getElementById('form-error');
-    errorDiv.style.display = 'none'; // Hide error message initially
-
+    // Try sending the form data to the backend
     try {
-        // Fetch POST request to backend endpoint
-        const response = await fetch('/api/register', { // Adjust the endpoint as needed
-            method: 'POST',
+        const response = await fetch("/api/register", { // Adjust endpoint as needed
+            method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(formData)
         });
 
         if (response.ok) {
-            // If successful, redirect to the desired page
-            window.location.href = '/finalize-registration.html'; // Adjust the URL for your setup
+            // Redirect upon successful registration
+            window.location.href = "/finalize-registration.html"; // Adjust URL as needed
         } else {
-            const result = await response.json();
-            errorDiv.innerText = result.error || 'Registration failed';
-            errorDiv.style.display = 'block';
+            const errorData = await response.json();
+            const errorDiv = document.getElementById("form-error");
+            errorDiv.innerText = errorData.message || "Registration failed.";
+            errorDiv.style.display = "block";
         }
     } catch (error) {
-        errorDiv.innerText = 'An error occurred during registration';
-        errorDiv.style.display = 'block';
+        // Handle any network errors or other exceptions
+        const errorDiv = document.getElementById("form-error");
+        errorDiv.innerText = "An error occurred while submitting the form.";
+        errorDiv.style.display = "block";
     }
 });
