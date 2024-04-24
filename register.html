@@ -7,7 +7,7 @@
           rel="stylesheet" 
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" 
           crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/styles.css"> <!-- Your custom styles -->
+    <link rel="stylesheet" href="assets/styles.css">
     <title>Register - Pro Jam</title>
 </head>
 
@@ -15,7 +15,7 @@
     <!-- Registration Form -->
     <div class="container mt-3">
         <h1 style="text-align: center;">Register for Pro Jam</h1>
-        <form id="register-form" class="mt-4">
+        <form id="register-form" class="mt-4"> <!-- No action, handled by JavaScript -->
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" class="form-control" id="username" name="username" required>
@@ -28,7 +28,7 @@
 
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" required>
+                <input type="password" class="form-control" id="password" required>
             </div>
 
             <div class="mb-3">
@@ -38,19 +38,16 @@
 
             <!-- Error message area to display client-side validation errors -->
             <div id="form-error" class="text-danger" style="display: none;"></div>
+
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
 
     <!-- External JavaScript file for form handling and validation -->
-    <script type="text/javascript" 
-            src="register.js" 
-            integrity="sha384-YourIntegrityValueHere" 
-            crossorigin="anonymous"></script>
+    <script src="register.js"></script> <!-- Check that the path is correct -->
 
     <!-- Bootstrap JS -->
-    <script type="text/javascript" 
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" 
             integrity="sha384-T0VANyBkJmICQY6wRXvGFmC45s" 
             crossorigin="anonymous"></script>
 </body>
