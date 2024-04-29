@@ -1,29 +1,17 @@
-const express = require('express');
-const session = require('express-session');
-const authRoutes = require('./routes/auth');
-const protectedRoutes = require('./routes/protected');
-const authMiddleware = require('./middleware/auth');
+import express from 'express';
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
 
-// Initialize session management
-app.use(session({
-  secret: 'your_secret_key', // Secure key for session management
-  resave: false,
-  saveUninitialized: false,
-}));
 
-// Apply routes
-app.use('/auth', authRoutes); // Routes related to authentication
-app.use('/protected', protectedRoutes); // Routes that require authentication
+app.listen(8000, function() {
 
-// Catch-all route for handling 404 errors or unauthorized access
-app.use((req, res) => {
-  res.status(404).send('Page not found');
+  console.log('Server is running on http://localhost:8000');
+
 });
 
-app.listen(3000, () => {
-  console.log('Server is running on http://localhost:3000');
+app.get('/', function(req, res) {
+
+  res.send('Hello World!');
+
+
 });

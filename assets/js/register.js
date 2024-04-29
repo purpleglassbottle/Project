@@ -1,20 +1,20 @@
-const form_user=document.querySelector('#form');
+const mysql = require('mysql');
 
-    form_user.addEventListener('submit', validateForm)
+const form_user = document.querySelector('#form');
+
+const db = mysql.createConnection({
+    host:'localhost',
+    user:'root',
+    password:'',
+    database:'pro_jam_db'
+});
+
+db.connect((err)=>{
+    if(err)  throw err;
+    console.log('Connected to database');
+    window.alert('Connected to database');
+});
 
 
-function validateForm(e){
-    e.preventDefault();
-    console.log('validating form')
-    const username=document.querySelector('#username').value;
-    const email=document.querySelector('#email').value;
-    const password=document.querySelector('#password').value;
-    const password2=document.querySelector('#password-confirm').value;
-    const error=document.querySelector('.error');
 
-    console.log(username)
-    console.log(email)
-    console.log(password)
-    console.log(password2)
-    
-}
+
